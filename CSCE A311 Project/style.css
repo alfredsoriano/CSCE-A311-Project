@@ -28,10 +28,20 @@ p {
 h1 {
     text-align: center;
     color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', cursive;
+}
+
+h2 {
+    transform: translateY(-17px);
+    text-align: center;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 body {
-    background-color: rgb(211, 210, 131);
-    height: 480px;
-    width: 480px;
+    background-image: url("cute-sky-2.jpg");
+    background-size: auto 100%; 
+    background-repeat: no-repeat;
+    width: 400px;
+    height: 540px;
 }
