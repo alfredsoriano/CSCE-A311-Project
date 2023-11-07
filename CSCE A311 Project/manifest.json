@@ -12,5 +12,6 @@
     "32": "images/bird-32.png",
     "48": "images/bird-48.png",
     "128": "images/bird-128.png"
-  }
+  },
+  "permissions": ["tabs"]
 }
