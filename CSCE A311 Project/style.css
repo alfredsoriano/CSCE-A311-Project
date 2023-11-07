@@ -1,47 +1,100 @@
 button {
-    background-color: lemonchiffon;
+    background-color: darkslateblue;
     padding: 10px 20px;
     font-size: 20px;
+    color: white;
     border-radius: 10px;
-    border: 2px solid grey;
+    border: 1px solid rgb(255, 255, 255);
+
+    /*box shadow*/
     cursor: pointer;
-    box-shadow: 0 6px #999;
+    box-shadow: 0 6px black;
     border-radius: 10px;
     margin-bottom: 30px;
 }
 button:hover {
-    opacity: .8;
+    opacity: .9;
 }
 button:active {
-    background-color:beige;
+    background-color:rgb(193, 154, 226);
     transform: translateY(4px);
-    box-shadow: 0 3px #666;
+    box-shadow: 0 3px black;
 }
 
-p {
-    font-size: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
+.buttons {
+    /*centers the buttons*/
+    margin: auto;
+    width: 60%;
+    white-space: nowrap;
+    /*code to space out buttons*/
+    display: flex;
+    column-gap: 10px;
+    justify-content: space-between;
+}
+
+
+
+#current-url {
+    /*background*/
+    background-color: darkslateblue;
+    background-image: linear-gradient(to bottom right, darkslateblue, rgb(183, 0, 255));
+    border-radius: 10px;
+    border-color: whitesmoke;
+
+    /*outline*/
+    outline-width: 2px;
+    outline-color: white;
+    outline-style: solid;
+
+    /*changes text*/
+    font-size: 16px;
     color: white;
-}
-
-h1 {
+    word-wrap: break-word;
     text-align: center;
-    color: white;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 2%;
+
+    /*adds outline*/
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', cursive;
 }
 
-h2 {
-    transform: translateY(-17px);
+.title {
+    /*centers text and disables auto wrapping*/
+    text-align: center;
+    font-size: 30px;
+    white-space: nowrap;
+    /*colors text*/
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', cursive;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(32, 0, 51);
+}
+
+.project-info {
+    transform: translateY(-18px);
     text-align: center;
     color: white;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /*outlines text in color*/
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(51, 0, 0);
 }
 
-body {
-    background-image: url("images/cute-sky-2.jpg");
-    background-size: auto 100%; 
+html {
+    background-image: url("images/cute-sky-3.webp");
+    background-size: cover; 
     background-repeat: no-repeat;
-    width: 400px;
+    width: 540px;
     height: 540px;
+    min-width: 540px;
+    min-height: 540px;
+}
+
+::-webkit-scrollbar {
+    display: none !important;
+}
+
+::-webkit-scrollbar-button {
+    display: none !important;
 }
