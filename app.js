@@ -1,11 +1,11 @@
 'use strict';
 
-class Node {
-    let = ch;
-    freq;
-    left = nullptr;
-    right = nullptr;
-    Node(ch, freq) { }
+function Node (ch, freq){
+
+     this.ch = ch;
+     this.freq = freq;
+     this.left = nullptr;
+     this.right = nullptr; 
 }
 
 
@@ -16,12 +16,13 @@ function huffmanTree(inputStr) {
 function createTree() {
     nodes;
 
-    //for (auto pair : histogram) {
-    //nodes.push_back(new node(pair.first, pair.second));
-    //}
-    sort(nodes.begin(), nodes.end(), [](Node * low, Node * high)) {
+    for (index = 0; index < histogram.length; index+= 1) {
+        nodes.push_back(new node(pair.first, pair.second));
+    }
+    sort(nodes.begin(), nodes.end(), (Node * low, Node * high)){ 
         return low.freq < high.freq;
     }
+
     while (nodes.size() != 1) {
         node * left = nodes.front();
         nodes.erase(nodes.begin());
@@ -33,14 +34,14 @@ function createTree() {
     root = nodes.front();
 }
 
-function createHistogram(let inputStr) {
+function createHistogram(inputStr) {
 
-    for (int i = 0; i < inputStr.size(); i++) {
+    for (i = 0; i < inputStr.size(); i++) {
         histogram[inputStr[i]]++;
     }
 }
 
-function createCodes(let node, let code) {
+function createCodes(node, code) {
 
     if (node.left)
         createCodes(node.left, code + "0");
@@ -54,9 +55,9 @@ function createCodes(let node, let code) {
     return codes;
 }
 
-function createBinaryCode(let inputStr) {
-    for (let ch: inputStr) {
-        for (auto pair : codes) {
+function createBinaryCode( inputStr) {
+    for ( ch, inputStr) {
+        for (pair, codes) {
         if (ch == pair.first)
             binaryCode += pair.second;
     }
@@ -65,13 +66,13 @@ function createBinaryCode(let inputStr) {
 return binaryCode;
 }
 
-function decodeBinaryCode(let root, let binaryCode) {
+function decodeBinaryCode(root, binaryCode) {
 
     let decodedString = "";
     let curr = root;
 
     //for each character in binaryCode...
-    for (let ch: binaryCode) {
+    for (ch, binaryCode) {
         if (ch == '0')
             curr = curr.left;
         else
@@ -106,7 +107,7 @@ function getCodes() {
     return codes;
 }
 
-function huffman(let code) {
+function huffman(code) {
     code.createHistogram(code);
 
     code.createTree();
@@ -121,4 +122,4 @@ function huffman(let code) {
 
 }
 
-console.log("I AM SAM MAM.");
+console.log(huffman("I AM SAM MAM."));
