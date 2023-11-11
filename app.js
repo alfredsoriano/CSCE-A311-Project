@@ -1,11 +1,11 @@
 'use strict';
 
-function Node (ch, freq){
+function Node(ch, freq) {
 
-     this.ch = ch;
-     this.freq = freq;
-     this.left = nullptr;
-     this.right = nullptr; 
+    this.ch = ch;
+    this.freq = freq;
+    this.left = nullptr;
+    this.right = nullptr;
 }
 
 
@@ -14,19 +14,29 @@ function huffmanTree(inputStr) {
 }
 
 function createTree() {
-    nodes;
+    var nodes;
 
-    for (index = 0; index < histogram.length; index+= 1) {
+    for (var index = 0; index < histogram.length; index += 1) {
         nodes.push_back(new node(pair.first, pair.second));
     }
-    sort(nodes.begin(), nodes.end(), (Node * low, Node * high)){ 
-        return low.freq < high.freq;
+
+    //nodes.sort((a, b) => a - b) {
+    //    return low.freq < high.freq;
+    //}
+
+    for (var i = 0; i < nodes.length; i++) {
+        var target = nodes[i];
+        for (j = i - 1; j >= 0 && (nodes[j] > target); j--) {
+            nodes[j + 1] = nodes[j];
+
+        }
+        nodes[j + 1] = target;
     }
 
     while (nodes.size() != 1) {
-        node * left = nodes.front();
+        left = nodes.front();
         nodes.erase(nodes.begin());
-        node * right = nodes.front();
+        right = nodes.front();
         nodes.erase(nodes.begin());
 
         nodes.push_back(newNode('\0', left.freq + right.freq, left, right));
@@ -35,8 +45,10 @@ function createTree() {
 }
 
 function createHistogram(inputStr) {
+    var histogram = new Map();
 
-    for (i = 0; i < inputStr.size(); i++) {
+
+    for (var i = 0; i < inputStr.length; i++) {
         histogram[inputStr[i]]++;
     }
 }
@@ -55,36 +67,36 @@ function createCodes(node, code) {
     return codes;
 }
 
-function createBinaryCode( inputStr) {
-    for ( ch, inputStr) {
-        for (pair, codes) {
-        if (ch == pair.first)
-            binaryCode += pair.second;
+function createBinaryCode(inputStr) {
+    for (var index = 0; index < inputStr.length; index += 1) {
+        for (index = 0; index < codes.length; index += 1) {
+            if (ch == pair.first)
+                binaryCode += pair.second;
+        }
     }
-}
 
-return binaryCode;
+    return binaryCode;
 }
 
 function decodeBinaryCode(root, binaryCode) {
 
-    let decodedString = "";
-    let curr = root;
+    var decodedString = "";
+    var curr = root;
 
     //for each character in binaryCode...
-    for (ch, binaryCode) {
+    for (index = 0; index < binaryCode.length; index += 1) {
         if (ch == '0')
             curr = curr.left;
         else
-    curr = curr.right;
+            curr = curr.right;
 
-    //if we reached a leaf node...
-    if ((curr.left == nullptr) && (curr.right == nullptr)) {
-        decodedString += curr.ch;
-        curr = root;
+        //if we reached a leaf node...
+        if ((curr.left == nullptr) && (curr.right == nullptr)) {
+            decodedString += curr.ch;
+            curr = root;
+        }
     }
-}
-return decodedString;
+    return decodedString;
 }
 
 function getInputString() {
@@ -108,18 +120,19 @@ function getCodes() {
 }
 
 function huffman(code) {
-    code.createHistogram(code);
+    createHistogram(code);
 
-    code.createTree();
+    createTree();
 
-    code.createCodes();
-    code.createBinaryCode();
-    console.log(code.getBinaryCode());
+    createCodes();
+    createBinaryCode();
+    console.log(getBinaryCode());
 
-    let decodedStr = code.decodeBinaryCode(code.getRoot(), code.getBinaryCode());
+    var decodedStr = decodeBinaryCode(code.getRoot(), code.getBinaryCode());
 
     console.log(decodedStr);
 
 }
 
-console.log(huffman("I AM SAM MAM."));
+
+huffman("I AM SAM MAM.");
