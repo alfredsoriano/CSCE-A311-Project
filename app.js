@@ -1,138 +1,101 @@
 'use strict';
 
-function Node(ch, freq) {
-
-    this.ch = ch;
-    this.freq = freq;
-    this.left = nullptr;
-    this.right = nullptr;
+class Node {
+    constructor(char, freq, left, right) {
+        this.char = char; 
+        this.freq = freq;
+        this.left = left;
+        this.right = right; 
+    }
 }
 
-
-function huffmanTree(inputStr) {
-    this.inputStr = inputStr;
+function encode(binCode, inputStr) {
+    let temp = Array.from(inputStr).map(
+        c => binCode[c]
+    );
+    return temp; 
 }
 
-function createTree() {
-    var nodes;
+function decode(binCode, encoded) {
+    let i = 0;
+    let decoded = "";
 
-    for (var index = 0; index < histogram.length; index += 1) {
-        nodes.push_back(new node(pair.first, pair.second));
+    for(i; i < encoded.size; i++) { 
+        //temp
     }
+    console.log(decoded); 
+}
 
-    //nodes.sort((a, b) => a - b) {
-    //    return low.freq < high.freq;
-    //}
+function huffman(inputStr) {
 
-    for (var i = 0; i < nodes.length; i++) {
-        var target = nodes[i];
-        for (j = i - 1; j >= 0 && (nodes[j] > target); j--) {
-            nodes[j + 1] = nodes[j];
+    const histogram = createHistogram(inputStr);
+    const strMap = mapHist(histogram); 
+    const tree = createTree(strMap);
+    const binCode = createBinCode('', tree); 
+    const encoded = Array.from(inputStr).map(c => binCode[c]);
+    
+    let i = 0;
+    let binCodeStr = "";
+    do {
+        i += 1;
+        binCodeStr += encoded[i] + ""; 
 
-        }
-        nodes[j + 1] = target;
-    }
+    } while (i < inputStr.length - 1);
 
-    while (nodes.size() != 1) {
-        left = nodes.front();
-        nodes.erase(nodes.begin());
-        right = nodes.front();
-        nodes.erase(nodes.begin());
+    console.log(binCodeStr); 
 
-        nodes.push_back(newNode('\0', left.freq + right.freq, left, right));
-    }
-    root = nodes.front();
+    let newInputStr = decode(binCode, encoded); 
+
+    return  binCodeStr; 
 }
 
 function createHistogram(inputStr) {
-    var histogram = new Map();
+    const histogram = {};
 
-
-    for (var i = 0; i < inputStr.length; i++) {
-        histogram[inputStr[i]]++;
-    }
-}
-
-function createCodes(node, code) {
-
-    if (node.left)
-        createCodes(node.left, code + "0");
-
-    if (node.right)
-        createCodes(node.right, code + "1");
-
-    if (!node.left && !node.right)
-        codes[node.ch] = code;
-
-    return codes;
-}
-
-function createBinaryCode(inputStr) {
-    for (var index = 0; index < inputStr.length; index += 1) {
-        for (index = 0; index < codes.length; index += 1) {
-            if (ch == pair.first)
-                binaryCode += pair.second;
-        }
+    for (let i = 0; i < inputStr.length; i++) {
+        const code = inputStr.charCodeAt(i);
+        histogram[code]++; 
     }
 
-    return binaryCode;
+    return histogram; 
 }
 
-function decodeBinaryCode(root, binaryCode) {
+function mapHist(histogram) {
+    let temp = Object.entries(histogram).map(([code, freq]) => {
+        const char = String.fromCharCode(code); 
+        return new Node(char, freq, null, null); 
+    })
+    return temp; 
+}
 
-    var decodedString = "";
-    var curr = root;
-
-    //for each character in binaryCode...
-    for (index = 0; index < binaryCode.length; index += 1) {
-        if (ch == '0')
-            curr = curr.left;
-        else
-            curr = curr.right;
-
-        //if we reached a leaf node...
-        if ((curr.left == nullptr) && (curr.right == nullptr)) {
-            decodedString += curr.ch;
-            curr = root;
-        }
+function createTree(strMap) {
+    if (strMap.length == 1) {
+        return strMap[0];
     }
-    return decodedString;
+    const [sm, lg] = sortTree(strMap); 
+    const tree = new Node(null, sm[0].freq + sm[1].freq, sm[0], sm[1]);
+    const finalTree = [...lg, tree]; 
+    return createTree(finalTree); 
 }
 
-function getInputString() {
-    return inputString;
+function sortTree(strMap) {
+    const temp = strMap.sort((a, b) => a.freq - b.freq);
+    const sm = temp.slice(0, 2); 
+    const lg = temp.slice(2);
+    return [sm, lg]; 
 }
 
-function getRoot() {
-    return root;
+function createBinCode(num, node) { 
+    if (!node) return {}; 
+    if (!node.left && !node.right) {
+        return { [node.char] : num };
+    }
+
+    return {
+        ...createBinCode(num + '0', node.left),
+        ...createBinCode(num + '1', node.right)
+    }
 }
-
-function getBinaryCode() {
-    return binaryCode;
-}
-
-function getHistogram() {
-    return histogram;
-}
-
-function getCodes() {
-    return codes;
-}
-
-function huffman(code) {
-    createHistogram(code);
-
-    createTree();
-
-    createCodes();
-    createBinaryCode();
-    console.log(getBinaryCode());
-
-    var decodedStr = decodeBinaryCode(code.getRoot(), code.getBinaryCode());
-
-    console.log(decodedStr);
-
-}
-
 
 huffman("I AM SAM MAM.");
+huffman("ABDUJASF AKLSNF KJANSF test 01923");
