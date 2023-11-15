@@ -26,7 +26,7 @@ button:active {
     margin: auto;
     width: 50%;
     white-space: nowrap;
-    transform: translateY(5px);
+    transform: translateY(8px);
     /*code to space out buttons*/
     display: flex;
     column-gap: 10px;
