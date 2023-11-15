@@ -108,6 +108,7 @@ function createBinCode(num, node) {
     }
 }
 
+let url = "";
 //code below for implementing interactive encode/decode buttons
 chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
     let url = tabs[0].url;
@@ -116,12 +117,13 @@ chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
     const encodedText = document.getElementById("encoded-text");
     const currentURL = document.getElementById("current-url");
 
+    //on the press of the "Get URL" button, sets the text area to the current page URL
     URLButton.addEventListener("click", function(){
     if (url.length < 150) {
-        currentURL.innerHTML += url;
+        currentURL.value = url;
     } 
     else {
-        currentURL.innerHTML = "URL is too big!";
+        currentURL.value = "URL is too big!";
     }
     });
 
