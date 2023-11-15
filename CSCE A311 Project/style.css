@@ -1,7 +1,7 @@
 button {
     background-color: darkslateblue;
-    padding: 10px 20px;
-    font-size: 20px;
+    padding: 8px 16px;
+    font-size: 16px;
     color: white;
     border-radius: 10px;
     border: 1px solid rgb(255, 255, 255);
@@ -24,8 +24,9 @@ button:active {
 .buttons {
     /*centers the buttons*/
     margin: auto;
-    width: 60%;
+    width: 50%;
     white-space: nowrap;
+    transform: translateY(5px);
     /*code to space out buttons*/
     display: flex;
     column-gap: 10px;
@@ -34,7 +35,7 @@ button:active {
 
 
 
-#current-url {
+.pboxes {
     /*background*/
     background-color: darkslateblue;
     background-image: linear-gradient(to bottom right, darkslateblue, rgb(183, 0, 255));
@@ -51,12 +52,16 @@ button:active {
     color: white;
     word-wrap: break-word;
     text-align: center;
-    margin-left: 10%;
-    margin-right: 10%;
-    padding: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 1%;
 
     /*adds outline*/
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', cursive;
+}
+
+#encoded-text {
+    transform: translateY(-20px);
 }
 
 .title {
@@ -70,7 +75,6 @@ button:active {
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: rgb(32, 0, 51);
 }
-
 .project-info {
     transform: translateY(-18px);
     text-align: center;
