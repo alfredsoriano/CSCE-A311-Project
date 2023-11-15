@@ -4,19 +4,19 @@
 <head>
     <!-- The line below is like #include "name.h" in c++ -->
     <link rel="stylesheet" href="style.css">
+    <script src="printURL.js"></script>
 </head>
 
     <!-- The <body> is where u display the shit u want -->
 <body>
     <h1 class="title">Huffman Encoder/Decoder</h1>
     <h2 class="project-info">Made by Ermelina and Alfred</h2>
-    <p id="current-url">
-        <script src="printURL.js"></script>
-    </p>
-    <div class="buttons">
-        <button id="encode">Encode</button>
-        <button id="decode">Decode</button>
-    </div>
-
+        <textarea class="pboxes" id="current-url" rows="2" cols="55" placeholder="Insert Text Here."></textarea>
+        <div class="buttons">
+            <button id="get-url">Get URL</button>
+            <button id="encode">Encode</button>
+        </div>
+        <p class="pboxes" id="encoded-text">Your output will appear here!</p>
 </body>
 </html>
+
