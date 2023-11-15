@@ -16,14 +16,24 @@ function encode(binCode, inputStr) {
     return temp; 
 }
 
-function decode(binCode, encoded) {
-    let i = 0;
-    let decoded = "";
-
-    for(i; i < encoded.size; i++) { 
-        //temp
+function decode(encoded, strMap) {
+    if (strMap.length == 1) {
+        return strMap[0];
     }
-    console.log(decoded); 
+    let finalStr = "";
+    for(let i = 0; i < encoded.length; i++) {
+        let temp = getLetter(encoded[i], strMap); 
+        finalStr += temp; 
+    }
+
+    return finalStr; 
+}
+function getLetter(letterBit, strMap) {
+    for(const [char1, freq1] of Object.entries(strMap)) {
+        if(freq1 == letterBit) {
+            return char1; 
+        }
+    }
 }
 
 function huffman(inputStr) {
@@ -33,7 +43,8 @@ function huffman(inputStr) {
     const tree = createTree(strMap);
     const binCode = createBinCode('', tree); 
     const encoded = Array.from(inputStr).map(c => binCode[c]);
-    
+    const decoded = Array.from(encoded).map(v => binCode[v]);
+
     let i = 0;
     let binCodeStr = "";
     do {
@@ -43,8 +54,8 @@ function huffman(inputStr) {
     } while (i < inputStr.length - 1);
 
     console.log(binCodeStr); 
-
-    let newInputStr = decode(binCode, encoded); 
+    let newInputStr = decode(encoded, binCode); 
+    console.log(newInputStr); 
 
     return  binCodeStr; 
 }
@@ -99,3 +110,4 @@ function createBinCode(num, node) {
 
 huffman("I AM SAM MAM.");
 huffman("ABDUJASF AKLSNF KJANSF test 01923");
+
