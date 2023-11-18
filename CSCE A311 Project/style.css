@@ -102,3 +102,7 @@ html {
 ::-webkit-scrollbar-button {
     display: none !important;
 }
+
+::placeholder {
+    color: white;
+}
