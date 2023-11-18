@@ -108,33 +108,38 @@ function createBinCode(num, node) {
     }
 }
 
+
+
 let url = "";
+let savedBinCode = "";
+let savedEncoded = new Map();
 //code below for implementing interactive encode/decode buttons
 chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
     let url = tabs[0].url;
-    const encodeButton = document.getElementById("encode");
     const URLButton = document.getElementById("get-url");
+    const encodeButton = document.getElementById("encode");
+    const decodeButton = document.getElementById("decode");
     const encodedText = document.getElementById("encoded-text");
-    const currentURL = document.getElementById("current-url");
+    const textbox = document.getElementById("textbox");
 
     //on the press of the "Get URL" button, sets the text area to the current page URL
-    URLButton.addEventListener("click", function(){
-    if (url.length < 150) {
-        currentURL.value = url;
-    } 
-    else {
-        currentURL.value = "URL is too big!";
-    }
+    URLButton.addEventListener("click", function() {
+        textbox.value = url;
     });
 
     //on the press of the "encode" button, encode the text in the text box
     encodeButton.addEventListener("click", function() {
-        if (url.length < 150) {
-            encodedText.innerHTML = huffman(currentURL.value);
-        }
-        else {
-            encodedText.innerHTML = "Input is too big!";
-        }
+        encodedText.innerHTML = huffman(textbox.value);
+        const histogram = createHistogram(textbox.value);
+        const strMap = mapHist(histogram); 
+        const tree = createTree(strMap);
+        savedBinCode = createBinCode('', tree); 
+        savedEncoded = Array.from(textbox.value).map(c => savedBinCode[c]);
+    });
+
+    //on the press of the "decode", takes in the code map + binary code string to decode the message.
+    decodeButton.addEventListener("click", function() {
+        encodedText.innerHTML = "Your decoded string is:<br/>" + decode(savedEncoded, savedBinCode);
     });
 });
 
