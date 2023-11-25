@@ -14,13 +14,13 @@
     5. (OPTIONAL) Press the pin button to the right of the extension to pin the extension to your search bar for easy access. Enjoy!
 
 **To use the extension:**
-    - The starting mode is ENCODE MODE.
-    - There are three buttons: "Get URL", "Change Mode", and "Encode/Decode"
-    - The "Get URL" button sets the input textarea to the current URL.
-    - The "Change Mode" button changes the extension to encode or decode mode.
-    - The "Encode/Decode" button swaps with each mode, and will either:
-        - encode a string using huffman encoding, and output a JSON array, JSON code object, and the string as an encoded binary string of 0's and 1's.
-        - decode a JSON array and JSON object, then output the decoded message.
+- The starting mode is ENCODE MODE.
+- There are three buttons: "Get URL", "Change Mode", and "Encode/Decode"
+- The "Get URL" button sets the input textarea to the current URL.
+- The "Change Mode" button changes the extension to encode or decode mode.
+- The "Encode/Decode" button swaps with each mode, and will either:
+    - encode a string using huffman encoding, and output a JSON array, JSON code object, and the string as an encoded binary string of 0's and 1's.
+    - decode a JSON array and JSON object, then output the decoded message.
 
 **To ENCODE (ENCODE MODE):**  
 
