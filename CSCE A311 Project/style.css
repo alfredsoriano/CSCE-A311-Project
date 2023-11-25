@@ -23,7 +23,7 @@ button:active {
 }
 .buttons {
     /*centers the buttons*/
-    margin-left: 85px;
+    margin-left: 55px;
     margin-right: 55px;
     width: 50%;
     white-space: nowrap;
