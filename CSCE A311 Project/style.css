@@ -1,3 +1,4 @@
+/*************************** BUTTON CONFIGURATIONS BELOW ***************************/
 button {
     background-color: darkslateblue;
     padding: 8px 16px;
@@ -20,10 +21,10 @@ button:active {
     transform: translateY(4px);
     box-shadow: 0 3px black;
 }
-
 .buttons {
     /*centers the buttons*/
-    margin: auto;
+    margin-left: 85px;
+    margin-right: 55px;
     width: 50%;
     white-space: nowrap;
     transform: translateY(8px);
@@ -33,9 +34,14 @@ button:active {
     justify-content: space-between;
 }
 
-
-
-.pboxes {
+/*decode button set to hide first*/
+#decode {
+    display: none;
+}
+/*************************** BUTTON CONFIGURATIONS ABOVE ***************************/
+/***********************************************************************************/
+/*************************** TEXTBOX CONFIGURATIONS BELOW ***************************/
+.textboxes {
     /*background*/
     background-color: darkslateblue;
     background-image: linear-gradient(to bottom right, darkslateblue, rgb(183, 0, 255));
@@ -46,11 +52,13 @@ button:active {
     outline-width: 2px;
     outline-color: white;
     outline-style: solid;
-
+    
     /*changes text*/
     font-size: 16px;
     color: white;
     word-wrap: break-word;
+    word-break: break-all;
+
     text-align: center;
     margin-left: 5%;
     margin-right: 5%;
@@ -60,10 +68,64 @@ button:active {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', cursive;
 }
 
-#encoded-text {
-    transform: translateY(-20px);
+#textbox {
+    overflow: scroll;
 }
 
+#arraybox {
+    float: left;
+    margin-right: 5px;
+    max-height: 250px;
+    overflow: scroll;
+    display: none;
+}
+
+#codemapbox {
+    float: right;
+    margin-left: 5px;
+    max-height: 240px;
+    overflow: scroll;
+    display: none;
+}
+
+#encoded-map {
+    transform: translateY(-14px);
+    float: left;
+    margin-right: 3px;
+    width: 143px;
+    max-height: 240px;
+    overflow: scroll;
+}
+
+#encoded-text {
+    transform: translateY(-14px);
+    float: left;
+    margin-right: 3px;
+    margin-left: 3px;
+    width: 143px;
+    max-height: 240px;
+    overflow: scroll;
+}
+
+#encoded-array {
+    transform: translateY(-14px);
+    float: left;
+    margin-left: 3px;
+    margin-right: 3px;
+    width: 143px;
+    max-height: 240px;
+    overflow: scroll;
+}
+
+#decoded-text {
+    transform: translateY(-14px);
+    max-height: 240px;
+    overflow: scroll;
+    display: none;
+}
+/*************************** TEXTBOX CONFIGURATIONS ABOVE ***************************/
+/***********************************************************************************/
+/*************************** MISC. CONFIGURATIONS BELOW ***************************/
 .title {
     /*centers text and disables auto wrapping*/
     text-align: center;
@@ -74,15 +136,6 @@ button:active {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', cursive;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: rgb(32, 0, 51);
-}
-.project-info {
-    transform: translateY(-18px);
-    text-align: center;
-    color: white;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    /*outlines text in color*/
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: rgb(51, 0, 0);
 }
 
 html {
@@ -106,3 +159,4 @@ html {
 ::placeholder {
     color: white;
 }
+/*************************** MISC. CONFIGURATIONS ABOVE ***************************/
