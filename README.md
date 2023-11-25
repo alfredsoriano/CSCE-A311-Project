@@ -32,7 +32,8 @@
 
     4. Save the JSON array and JSON object into a separate text file, for later decoding.  
 
-**To DECODE (DECODE MODE):**
+**To DECODE (DECODE MODE):**  
+
 NOTE: The "Get URL" button will be disabled.  
 
     1. Take the saved JSON array and JSON object and paste them into their respective text area boxes above the buttons.  
