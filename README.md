@@ -1,5 +1,5 @@
 # CSCE-A311-Project
-### This chrome extension was developed by Ermelina Gonzales and Alfred Soriano.
+### This chrome extension was developed by Ermelina Gonzalez and Alfred Soriano.
 
 **To install the extension using GitHub:**
 
