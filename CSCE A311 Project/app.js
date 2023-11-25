@@ -102,16 +102,29 @@ function createBinCode(num, node) {
     }
 }
 
+function copyToClipboard(text) {
+    let temp = document.createElement("textarea");
+    temp.style.display = "none";
+
+    document.body.appendChild(temp);
+    temp.value = text;
+    temp.select();
+    navigator.clipboard.writeText(temp.value)
+    document.body.removeChild(temp);
+}
+
 let url = "";
 let mode = 0; //mode 0 is encoding, mode 1 is decoding 
 //code below for implementing interactive encode/decode buttons
 chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
     let url = tabs[0].url;
+
     const textBox = document.getElementById("textbox");
     const arrayBox = document.getElementById("arraybox");
     const codeMapBox = document.getElementById("codemapbox");
     const changeModeButton = document.getElementById("change-mode");
     const URLButton = document.getElementById("get-url");
+    const copyButton = document.getElementById("copy")
     const encodeButton = document.getElementById("encode");
     const decodeButton = document.getElementById("decode");
     const encodedText = document.getElementById("encoded-text");
@@ -166,26 +179,47 @@ chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
     
     //on the press of the "Get URL" button, sets the text area to the current page URL
     URLButton.addEventListener("click", function() {
-        textbox.value = url;
+        textBox.value = url;
     });
+
+
+    copyButton.addEventListener("click", function() {
+        //if in encode mode, the copy button copies all three outputs into a nice format.
+        if (mode == 0) {
+            copyToClipboard(codeMapText.innerText + "\n\n" + encodedArray.innerText + "\n\n" + encodedText.innerText);
+        }
+        //else if in decode mode, the copy button copies the decoded string.
+        else if (mode == 1) {
+            copyToClipboard(decodedText.innerText);
+        }
+    });
+
 
     //on the press of the "encode" button, encode the text in the text box
     encodeButton.addEventListener("click", function() {
         if (decodedText.style.display == "block") {
             decodedText.style.display = "none";
         }
-        encodedText.innerHTML = "Encoded text:<br/>" + huffman(textbox.value);
-        encodedText.style.display = "block";
-        const histogram = createHistogram(textbox.value);
-        const strMap = mapHist(histogram); 
-        const tree = createTree(strMap);
-        const binCode = createBinCode('', tree); 
-        const encoded = Array.from(textbox.value).map(c => binCode[c]);
 
-        codeMapText.innerHTML = "Code map:<br/>" + JSON.stringify(binCode);
-        encodedArray.innerHTML = "Encoded array:<br/>" + JSON.stringify(encoded);
-        codeMapText.style.display = "block";
-        encodedArray.style.display = "block";
+        //checks if the textarea is empty
+        if (textBox.value == "") {
+            textBox.placeholder = "The textarea is empty!";
+        }
+        else {
+            textBox.placeholder = "Input string to encode here!"
+            encodedText.innerHTML = "Encoded text:<br/> " + huffman(textBox.value);
+            encodedText.style.display = "block";
+            const histogram = createHistogram(textBox.value);
+            const strMap = mapHist(histogram); 
+            const tree = createTree(strMap);
+            const binCode = createBinCode('', tree); 
+            const encoded = Array.from(textBox.value).map(c => binCode[c]);
+
+            codeMapText.innerHTML = "JSON Map:<br/> " + JSON.stringify(binCode);
+            encodedArray.innerHTML = "JSON Array:<br/> " + JSON.stringify(encoded);
+            codeMapText.style.display = "block";
+            encodedArray.style.display = "block";
+        }
     });
 
     //on the press of the "decode", takes in the code map + binary code string to decode the message.
@@ -195,7 +229,7 @@ chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
             encodedText.style.display = "none";
         }
 
-        decodedText.innerHTML = "Decoded string:<br/>" + decode(JSON.parse(arrayBox.value), JSON.parse(codeMapBox.value));
+        decodedText.innerHTML = "Decoded string:<br/> " + decode(JSON.parse(arrayBox.value), JSON.parse(codeMapBox.value));
         decodedText.style.display = "block";
     });
 });
