@@ -182,7 +182,23 @@ chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
         textBox.value = url;
     });
 
-
+    //Lets the user know if the button was successfully pressed.
+    copyButton.addEventListener('click', function (clicked) {
+        return function () {
+            if (!clicked) {
+                var last = this.innerHTML;
+                this.innerHTML = 'Copied!';
+                this.style.padding = "3px 7px";
+                clicked = true;
+                setTimeout(function () {
+                    this.innerHTML = last;
+                    this.style.padding = "8px 16px";
+                    clicked = false;
+                }.bind(this), 1500);
+            }
+        };
+    }(false), this);
+    
     copyButton.addEventListener("click", function() {
         //if in encode mode, the copy button copies all three outputs into a nice format.
         if (mode == 0) {
