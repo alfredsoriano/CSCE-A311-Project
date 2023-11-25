@@ -28,6 +28,7 @@ function decode(encoded, strMap) {
 
     return finalStr; 
 }
+
 function getLetter(letterBit, strMap) {
     for(const [char1, freq1] of Object.entries(strMap)) {
         if(freq1 == letterBit) {
@@ -43,7 +44,6 @@ function huffman(inputStr) {
     const tree = createTree(strMap);
     const binCode = createBinCode('', tree); 
     const encoded = Array.from(inputStr).map(c => binCode[c]);
-    const decoded = Array.from(encoded).map(v => binCode[v]);
 
     let i = 0;
     let binCodeStr = "";
@@ -52,11 +52,6 @@ function huffman(inputStr) {
         binCodeStr += encoded[i] + ""; 
 
     } while (i < inputStr.length - 1);
-
-    console.log(binCodeStr); 
-    let newInputStr = decode(encoded, binCode); 
-    console.log(newInputStr); 
-
     return  binCodeStr; 
 }
 
@@ -101,27 +96,74 @@ function createBinCode(num, node) {
     if (!node.left && !node.right) {
         return { [node.char] : num };
     }
-
     return {
         ...createBinCode(num + '0', node.left),
         ...createBinCode(num + '1', node.right)
     }
 }
 
-
-
 let url = "";
-let savedBinCode = "";
-let savedEncoded = new Map();
+let mode = 0; //mode 0 is encoding, mode 1 is decoding 
 //code below for implementing interactive encode/decode buttons
 chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
     let url = tabs[0].url;
+    const textBox = document.getElementById("textbox");
+    const arrayBox = document.getElementById("arraybox");
+    const codeMapBox = document.getElementById("codemapbox");
+    const changeModeButton = document.getElementById("change-mode");
     const URLButton = document.getElementById("get-url");
     const encodeButton = document.getElementById("encode");
     const decodeButton = document.getElementById("decode");
     const encodedText = document.getElementById("encoded-text");
-    const textbox = document.getElementById("textbox");
+    const encodedArray = document.getElementById("encoded-array");
+    const codeMapText = document.getElementById("encoded-map");
+    const decodedText = document.getElementById("decoded-text");
 
+    changeModeButton.addEventListener("click", function() {
+        //when pressed and in encode mode, changes to decode mode
+        if (mode == 0) {
+            mode = 1;
+            arrayBox.value = "";
+            codeMapBox.value = "";
+            decodedText.innerHTML = "Your decoded message will appear here!";
+
+            URLButton.style.backgroundColor = "#322A61";
+            URLButton.style.textDecoration = "line-through";
+
+            textBox.style.display = "none";
+            arrayBox.style.display = "block";
+            codeMapBox.style.display = "block";
+            encodedText.style.display = "none";
+            encodedArray.style.display = "none";
+            codeMapText.style.display = "none";
+            decodedText.style.display = "block";
+            encodeButton.style.display = "none";
+            decodeButton.style.display = "block";
+        }
+        //when pressed and in decode mode, changes to encode mode
+        else if (mode == 1) {
+            mode = 0;
+            textBox.value = "";
+            encodedText.innerHTML = "Your encoded text<br/> will appear here!";
+            encodedArray.innerHTML = "Your JSON array<br/> will appear here!";
+            codeMapText.innerHTML = "Your JSON code map<br/> will appear here!";
+
+            URLButton.style.backgroundColor = "#483d8b";
+            URLButton.style.textDecoration = "none";
+
+            textBox.style.display = "block";
+            arrayBox.style.display = "none";
+            codeMapBox.style.display = "none";
+            encodedText.style.display = "block";
+            encodedArray.style.display = "block";
+            codeMapText.style.display = "block";
+            decodedText.style.display = "none";
+            encodeButton.style.display = "block";
+            decodeButton.style.display = "none";
+        }
+    });
+
+    
     //on the press of the "Get URL" button, sets the text area to the current page URL
     URLButton.addEventListener("click", function() {
         textbox.value = url;
@@ -129,17 +171,31 @@ chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
 
     //on the press of the "encode" button, encode the text in the text box
     encodeButton.addEventListener("click", function() {
-        encodedText.innerHTML = huffman(textbox.value);
+        if (decodedText.style.display == "block") {
+            decodedText.style.display = "none";
+        }
+        encodedText.innerHTML = "Encoded text:<br/>" + huffman(textbox.value);
+        encodedText.style.display = "block";
         const histogram = createHistogram(textbox.value);
         const strMap = mapHist(histogram); 
         const tree = createTree(strMap);
-        savedBinCode = createBinCode('', tree); 
-        savedEncoded = Array.from(textbox.value).map(c => savedBinCode[c]);
+        const binCode = createBinCode('', tree); 
+        const encoded = Array.from(textbox.value).map(c => binCode[c]);
+
+        codeMapText.innerHTML = "Code map:<br/>" + JSON.stringify(binCode);
+        encodedArray.innerHTML = "Encoded array:<br/>" + JSON.stringify(encoded);
+        codeMapText.style.display = "block";
+        encodedArray.style.display = "block";
     });
 
     //on the press of the "decode", takes in the code map + binary code string to decode the message.
     decodeButton.addEventListener("click", function() {
-        encodedText.innerHTML = "Your decoded string is:<br/>" + decode(savedEncoded, savedBinCode);
+        if (codeMapText.style.display == "block" && encodedText.style.display == "block") {
+            codeMapText.style.display = "none";
+            encodedText.style.display = "none";
+        }
+
+        decodedText.innerHTML = "Decoded string:<br/>" + decode(JSON.parse(arrayBox.value), JSON.parse(codeMapBox.value));
+        decodedText.style.display = "block";
     });
 });
-
