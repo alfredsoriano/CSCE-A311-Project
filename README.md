@@ -1,20 +1,20 @@
 # CSCE-A311-Project
-## This chrome extension was developed by Ermelina Gonzales and Alfred Soriano.
+### This chrome extension was developed by Ermelina Gonzales and Alfred Soriano.
 
 **To install the extension using GitHub:**
 
-1. From the alfredsoriano/CSCE-A311-Project repository, in the "<> Code" section,
+    1. From the alfredsoriano/CSCE-A311-Project repository, in the "<> Code" section,
 press the green "<> Code" button and download the zip file.
 
-2. After unzipping the downloaded file, go to chrome://extensions, then look to the
+    2. After unzipping the downloaded file, go to chrome://extensions, then look to the
 upper right and press the "developer mode" switch, turning it from gray to blue.
 
-3. Press the "Load unpacked" button, then select and open the CSCE-A311-Project folder. (NOT the CSCE-A311-Project-main folder!)
+    3. Press the "Load unpacked" button, then select and open the CSCE-A311-Project folder. (NOT the CSCE-A311-Project-main folder!)
 
-4. Look to the top right, and press the puzzle piece icon (extensions icon),
+    4. Look to the top right, and press the puzzle piece icon (extensions icon),
 and press the "CSCE A311 Project" extension. It should have a star icon.
 
-5(optional). Press the pin button to the right of the extension to pin the extension to your search bar for easy access. Enjoy!
+    5. (OPTIONAL) Press the pin button to the right of the extension to pin the extension to your search bar for easy access. Enjoy!
 
 **To use the extension:**
 - The starting mode is ENCODE MODE.
