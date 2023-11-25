@@ -189,10 +189,12 @@ chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
                 var last = this.innerHTML;
                 this.innerHTML = 'Copied!';
                 this.style.padding = "3px 7px";
+                this.style.fontStyle = "italic";
                 clicked = true;
                 setTimeout(function () {
                     this.innerHTML = last;
                     this.style.padding = "8px 16px";
+                    this.style.fontStyle = "normal";
                     clicked = false;
                 }.bind(this), 1500);
             }
