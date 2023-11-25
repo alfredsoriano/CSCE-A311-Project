@@ -127,7 +127,7 @@ chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
             codeMapBox.value = "";
             decodedText.innerHTML = "Your decoded message will appear here!";
 
-            URLButton.style.backgroundColor = "#322A61";
+            URLButton.style.color = "#949494";
             URLButton.style.textDecoration = "line-through";
 
             textBox.style.display = "none";
@@ -148,7 +148,7 @@ chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
             encodedArray.innerHTML = "Your JSON array<br/> will appear here!";
             codeMapText.innerHTML = "Your JSON code map<br/> will appear here!";
 
-            URLButton.style.backgroundColor = "#483d8b";
+            URLButton.style.color = "#FFFFFF";
             URLButton.style.textDecoration = "none";
 
             textBox.style.display = "block";
