@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang = "en">
-    <!-- The <head> is for loading stuff like pre-processing directives in c++ -->
 <head>
-    <!-- The line below is like #include "name.h" in c++ -->
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <script src="app.js"></script>
 </head>
-
-    <!-- The <body> is where u display the shit u want -->
 <body>
     <h1 class="title">Huffman Encoder/Decoder</h1>
-    <h2 class="project-info">Made by Ermelina and Alfred</h2>
-        <textarea class="pboxes" id="textbox" rows="3" cols="55" maxlength="150" placeholder="Input text here! (Max 150 Characters.)"></textarea>
+        <textarea class="textboxes" id="textbox" rows="4" cols="55" placeholder="Input string to encode here!"></textarea>
+        <textarea class="textboxes" id="arraybox" rows="4" cols="25" placeholder="Input JSON encoded array here!"></textarea>
+        <textarea class="textboxes" id="codemapbox" rows="4" cols="25" placeholder="Input JSON code map here!"></textarea>
         <div class="buttons">
             <button id="get-url">Get URL</button>
+            <button id="change-mode">Change Mode</button>
             <button id="encode">Encode</button>
             <button id="decode">Decode</button>
         </div>
-        <p class="pboxes" id="encoded-text">Your output will appear here!</p>
+        <div class="textboxes" id="encoded-map">Your JSON code map<br/>will appear here!</div>
+        <div class="textboxes" id="encoded-array">Your JSON array<br/> will appear here!</div>
+        <div class="textboxes" id="encoded-text">Your encoded text<br/> will appear here!</div>
+        <div class="textboxes" id="decoded-text">Your decoded message will appear here!</div>
 </body>
 </html>
-
