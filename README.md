@@ -3,7 +3,7 @@
 
 **To install the extension using GitHub:**  
 
-    1. From the alfredsoriano/CSCE-A311-Project repository, in the "<> Code" section, press the green "<> Code" button and download the zip file.
+    1. From the [alfredsoriano/CSCE-A311-Project](https://github.com/alfredsoriano/CSCE-A311-Project) repository, in the "<> Code" section, press the green "<> Code" button and download the zip file.
 
     2. After unzipping the downloaded file, go to chrome://extensions, then look to the upper right and press the "developer mode" switch, turning it from gray to blue.
 
