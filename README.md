@@ -2,12 +2,11 @@
 ### This chrome extension was developed by Ermelina Gonzales and Alfred Soriano.
 
 **To install the extension using GitHub:**
-
     1. From the alfredsoriano/CSCE-A311-Project repository, in the "<> Code" section, press the green "<> Code" button and download the zip file.
 
-    2. After unzipping the downloaded file, go to [chrome://extensions](chrome://extensions), then look to the upper right and press the "developer mode" switch, turning it from gray to blue.
+    2. After unzipping the downloaded file, go to chrome://extensions, then look to the upper right and press the "developer mode" switch, turning it from gray to blue.
 
-    3. Press the "Load unpacked" button, then select and open the CSCE-A311-Project folder. (NOT the CSCE-A311-Project-main folder!) There should be a new extension loaded into the [chrome://extensions](chrome://extensions) web page with a pixelated star icon, with the extenstion title.
+    3. Press the "Load unpacked" button, then select and open the CSCE-A311-Project folder. (NOT the CSCE-A311-Project-main folder!) There should be a new extension loaded into the chrome://extensions web page with a pixelated star icon, with the extenstion title.
 
     4. Look to the top right, and press the puzzle piece icon (extensions icon), and press the "CSCE A311 Project" extension. It should have a star icon.
 
