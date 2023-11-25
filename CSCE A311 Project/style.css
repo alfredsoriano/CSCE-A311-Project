@@ -73,16 +73,16 @@ button:active {
 }
 
 #arraybox {
-    float: left;
-    margin-right: 5px;
+    float: right;
+    margin-left: 5px;
     max-height: 250px;
     overflow: scroll;
     display: none;
 }
 
 #codemapbox {
-    float: right;
-    margin-left: 5px;
+    float: left;
+    margin-right: 5px;
     max-height: 240px;
     overflow: scroll;
     display: none;
