@@ -9,6 +9,7 @@ class Node {
     }
 }
 
+//encodes the binary code string into an array 
 function encode(binCode, inputStr) {
     let temp = Array.from(inputStr).map(
         c => binCode[c]
@@ -16,6 +17,7 @@ function encode(binCode, inputStr) {
     return temp; 
 }
 
+//decodes binary code from encoded input and compares to strMap
 function decode(encoded, strMap) {
     if (strMap.length == 1) {
         return strMap[0];
@@ -29,6 +31,7 @@ function decode(encoded, strMap) {
     return finalStr; 
 }
 
+//returns ASCII charcter from frequency
 function getLetter(letterBit, strMap) {
     for(const [char1, freq1] of Object.entries(strMap)) {
         if(freq1 == letterBit) {
@@ -37,14 +40,16 @@ function getLetter(letterBit, strMap) {
     }
 }
 
+//takes input string and returns binary code string
 function huffman(inputStr) {
 
-    const histogram = createHistogram(inputStr);
+    const histogram = createHistogram(inputStr); 
     const strMap = mapHist(histogram); 
     const tree = createTree(strMap);
     const binCode = createBinCode('', tree); 
     const encoded = Array.from(inputStr).map(c => binCode[c]);
 
+    //formats binary string from encoded array
     let i = 0;
     let binCodeStr = "";
     do {
@@ -52,9 +57,11 @@ function huffman(inputStr) {
         binCodeStr += encoded[i] + ""; 
 
     } while (i < inputStr.length - 1);
+    
     return  binCodeStr; 
 }
 
+//creates frequency histogram 
 function createHistogram(inputStr) {
     const histogram = {};
 
@@ -66,6 +73,7 @@ function createHistogram(inputStr) {
     return histogram; 
 }
 
+//uses an object to create an array of nodes
 function mapHist(histogram) {
     let temp = Object.entries(histogram).map(([code, freq]) => {
         const char = String.fromCharCode(code); 
@@ -74,6 +82,7 @@ function mapHist(histogram) {
     return temp; 
 }
 
+//recursively adds nodes to tree each call from the two sorted arrays
 function createTree(strMap) {
     if (strMap.length == 1) {
         return strMap[0];
@@ -84,6 +93,7 @@ function createTree(strMap) {
     return createTree(finalTree); 
 }
 
+//returns two new sorted arrays
 function sortTree(strMap) {
     const temp = strMap.sort((a, b) => a.freq - b.freq);
     const sm = temp.slice(0, 2); 
@@ -91,6 +101,7 @@ function sortTree(strMap) {
     return [sm, lg]; 
 }
 
+//recursively creates binary code by iterating through nodes
 function createBinCode(num, node) { 
     if (!node) return {}; 
     if (!node.left && !node.right) {
@@ -102,6 +113,7 @@ function createBinCode(num, node) {
     }
 }
 
+//copy to clipboard button 
 function copyToClipboard(text) {
     let temp = document.createElement("textarea");
     temp.style.display = "none";
@@ -182,7 +194,7 @@ chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
         textBox.value = url;
     });
 
-    //Lets the user know if the button was successfully pressed.
+    //lets the user know if the button was successfully pressed.
     copyButton.addEventListener('click', function (clicked) {
         return function () {
             if (!clicked) {
@@ -219,7 +231,7 @@ chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
             decodedText.style.display = "none";
         }
 
-        //checks if the textarea is empty
+        //checks if the text area is empty
         if (textBox.value == "") {
             textBox.placeholder = "The textarea is empty!";
         }
