@@ -15,3 +15,4 @@
   - instructions on how to use the encode/decode modes.
 
 ## Ermelina Gonzalez
+-Huffman Javascript coding (app.js), such as the implementation of the huffman function, creating histogram, Huffman binary tree, binary code, and decoding. 
